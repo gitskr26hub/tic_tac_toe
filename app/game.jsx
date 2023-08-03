@@ -57,7 +57,7 @@ const Game = () => {
 
      setarr(arr)
   
-     document.getElementById(id).innerText=arr[+a][+b]
+     document.getElementById(id).innerHTML=`<h1>${arr[+a][+b]}</h1>`
   }
   
      setTimeout(()=>{
