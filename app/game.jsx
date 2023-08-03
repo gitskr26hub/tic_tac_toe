@@ -1,5 +1,6 @@
 "use client"
 
+import swal from 'sweetalert'
 import React, { useState } from 'react'
 
 const Game = () => {
@@ -31,9 +32,7 @@ const Game = () => {
         player_two:Players.player_two,
         player_two_mark:Players.player_two_mark=="O"?"X":"O",
       }
-       setPlayes(payload)
-
-    }
+       setPlayes(payload) }
 
     function NayaGame(){
       setPlayes({
@@ -48,25 +47,24 @@ const Game = () => {
 
    const setThis=async(id)=>{
     const a=id[0],b=id[1];
-
      if(arr[+a][+b].length==0){
       setChance((prev)=>!prev)
-
       arr[+a][+b]=await chance===false?Players.player_one_mark:Players.player_two_mark
-  
-
-     setarr(arr)
-  
-     document.getElementById(id).innerHTML=`<h1>${arr[+a][+b]}</h1>`
+      setarr(arr)
+      document.getElementById(id).innerHTML=`<h1>${arr[+a][+b]}</h1>`
   }
+  const v=checkWhoWon(arr)
   
      setTimeout(()=>{
-      if(checkWhoWon(arr)!=="Continue"){
-        alert(checkWhoWon(arr));
+     
+      if(v!=="Continue"){
+        console.log("something")
+        swal({title:v});
+      
         NayaGame()
         setnewgame(true);
       }
-     },[1000])
+     },[500])
     // console.log(arr)
    }
 
@@ -116,8 +114,9 @@ const Game = () => {
     }
 
 
+const CSS='bg-black text-4xl w-[80px] h-[80px] text-white text-center justify-center items-center origin-center p-[25%]'
 
-const CSS='bg-black text-4xl w-[80px] h-[80px] text-white text-center justify-center items-center'
+
   return (
     <div>
     <div className='flex flex-col items-center justify-center p-2 mb-4'>
